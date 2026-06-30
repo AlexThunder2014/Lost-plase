@@ -1,1 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LostPlaces Explorer NRW</title>
 
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet/dist/leaflet.css"
+    />
+
+</head>
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <h1>LostPlaces Explorer NRW</h1>
+
+        <button id="darkModeBtn">
+            🌙
+        </button>
+
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <div class="glass">
+
+        <h2>Entdecke spannende Lost Places in NRW</h2>
+
+        <p>
+            Karten • Fotos • Geschichte • Bewertungen • Legaler Zugangsstatus
+        </p>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Ort suchen..."
+        >
+
+    </div>
+
+</section>
+
+<main>
+
+<section>
+
+<h2>Interaktive Karte</h2>
+
+<div id="map"></div>
+
+</section>
+
+<section>
+
+<h2>Kategorien</h2>
+
+<div id="categories"></div>
+
+</section>
+
+<section>
+
+<h2>Top-Orte</h2>
+
+<div id="topPlaces"></div>
+
+</section>
+
+<section>
+
+<h2>Statistiken</h2>
+
+<div id="stats"></div>
+
+</section>
+
+</main>
+
+<footer>
+
+<p>
+© 2026 LostPlaces Explorer NRW
+</p>
+
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
