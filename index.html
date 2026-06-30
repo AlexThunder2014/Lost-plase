@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>LostPlaces Explorer NRW</title>
 
     <link rel="stylesheet" href="style.css">
@@ -19,11 +22,19 @@
 
     <nav class="navbar">
 
-        <h1>LostPlaces Explorer NRW</h1>
+        <h1>🏚️ LostPlaces Explorer NRW</h1>
 
-        <button id="darkModeBtn">
-            🌙
-        </button>
+        <div class="navButtons">
+
+            <button id="favoritesBtn" title="Favoriten">
+                ❤️ <span id="favoriteCount">0</span>
+            </button>
+
+            <button id="darkModeBtn" title="Dark Mode">
+                🌙
+            </button>
+
+        </div>
 
     </nav>
 
@@ -33,16 +44,16 @@
 
     <div class="glass">
 
-        <h2>Entdecke spannende Lost Places in NRW</h2>
+        <h2>Entdecke spannende Lost Places in Nordrhein-Westfalen</h2>
 
         <p>
-            Karten • Fotos • Geschichte • Bewertungen • Legaler Zugangsstatus
+            Karten • Geschichte • Bewertungen • Fotos • Öffentliche Informationen • Klar gekennzeichneter Zugangsstatus
         </p>
 
         <input
-            type="text"
             id="search"
-            placeholder="Ort suchen..."
+            type="text"
+            placeholder="🔍 Ort oder Kategorie suchen..."
         >
 
     </div>
@@ -53,7 +64,91 @@
 
 <section>
 
-<h2>Interaktive Karte</h2>
+<h2>Filter</h2>
+
+<div class="filters">
+
+<button class="filter-btn" data-distance="20">
+Unter 20 km
+</button>
+
+<button class="filter-btn" data-distance="50">
+Unter 50 km
+</button>
+
+<button class="filter-btn" data-distance="100">
+Unter 100 km
+</button>
+
+<button class="filter-btn" data-legal="Ja">
+Nur legal
+</button>
+
+<button class="filter-btn" data-free="true">
+Kostenlos
+</button>
+
+<select id="categoryFilter">
+
+<option value="">
+Alle Kategorien
+</option>
+
+<option>Fabriken</option>
+
+<option>Krankenhäuser</option>
+
+<option>Burgen</option>
+
+<option>Bunker</option>
+
+<option>Zechen</option>
+
+<option>Bahnhöfe</option>
+
+<option>Geisterdörfer</option>
+
+<option>Industrie</option>
+
+<option>Natur</option>
+
+</select>
+
+<select id="ratingFilter">
+
+<option value="">
+Bewertung
+</option>
+
+<option value="10">
+10
+</option>
+
+<option value="9">
+9+
+</option>
+
+<option value="8">
+8+
+</option>
+
+<option value="7">
+7+
+</option>
+
+<option value="6">
+6+
+</option>
+
+</select>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>🗺️ Interaktive Karte</h2>
 
 <div id="map"></div>
 
@@ -61,15 +156,7 @@
 
 <section>
 
-<h2>Kategorien</h2>
-
-<div id="categories"></div>
-
-</section>
-
-<section>
-
-<h2>Top-Orte</h2>
+<h2>⭐ Top-Orte</h2>
 
 <div id="topPlaces"></div>
 
@@ -77,9 +164,75 @@
 
 <section>
 
-<h2>Statistiken</h2>
+<h2>🗂 Kategorien</h2>
+
+<div id="categories"></div>
+
+</section>
+
+<section>
+
+<h2>📊 Statistiken</h2>
 
 <div id="stats"></div>
+
+</section>
+
+<section>
+
+<h2>❤️ Favoriten</h2>
+
+<div id="favorites">
+
+<p class="placeholder">
+Noch keine Favoriten gespeichert.
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<h2>ℹ️ Sicherheitshinweis</h2>
+
+<div class="infoBox">
+
+<p>
+
+Diese Website zeigt ausschließlich öffentlich verfügbare Informationen.
+
+</p>
+
+<p>
+
+Der jeweilige Zugangsstatus wird deutlich gekennzeichnet:
+
+</p>
+
+<ul>
+
+<li>
+🟢 <strong>Ja</strong> – öffentlich zugänglich.
+</li>
+
+<li>
+🟡 <strong>Teilweise</strong> – nur öffentliche Bereiche oder geführte Besichtigungen.
+</li>
+
+<li>
+🔴 <strong>Nein</strong> – Privatgelände oder kein öffentlicher Zugang.
+</li>
+
+</ul>
+
+<p>
+
+Bitte respektiere Eigentumsrechte, Sperrungen und Naturschutz.
+
+</p>
+
+</div>
 
 </section>
 
@@ -88,7 +241,9 @@
 <footer>
 
 <p>
+
 © 2026 LostPlaces Explorer NRW
+
 </p>
 
 </footer>
