@@ -10,17 +10,13 @@ L.tileLayer(
 document
 .getElementById("darkModeBtn")
 .addEventListener("click", () => {
-
     document.body.classList.toggle("dark");
-
 });
 
 let places = [];
 
-function markerColor(status){
-
-    switch(status){
-
+function markerColor(status) {
+    switch (status) {
         case "Ja":
             return "green";
 
@@ -29,20 +25,18 @@ function markerColor(status){
 
         default:
             return "red";
-
     }
-
 }
 
-function createMarker(place){
+function createMarker(place) {
 
     const color = markerColor(place.legalAccess);
 
-    const marker = L.circleMarker(place.gps,{
-        radius:10,
-        color:color,
-        fillColor:color,
-        fillOpacity:0.9
+    const marker = L.circleMarker(place.gps, {
+        radius: 10,
+        color: color,
+        fillColor: color,
+        fillOpacity: 0.9
     }).addTo(map);
 
     marker.bindPopup(`
@@ -60,54 +54,57 @@ function createMarker(place){
         <b>Sicherheit:</b> ${place.safety}<br>
         <b>Entfernung:</b> ${place.distance} km
     `);
-
 }
 
-function renderTopPlaces(){
+function renderTopPlaces() {
 
     const container = document.getElementById("topPlaces");
 
     container.innerHTML = "";
 
     places
-    .sort((a,b)=>b.spectacular-a.spectacular)
-    .slice(0,3)
-    .forEach(place=>{
+        .slice()
+        .sort((a, b) => b.spectacular - a.spectacular)
+        .slice(0, 3)
+        .forEach(place => {
 
-        container.innerHTML += `
-        <div class="card">
+            container.innerHTML += `
+                <div class="card">
 
-            <h3>${place.name}</h3>
+                    <h3>${place.name}</h3>
 
-            <p>${place.category}</p>
+                    <p>${place.category}</p>
 
-            <p>⭐ ${place.spectacular}/10</p>
+                    <p>⭐ ${place.spectacular}/10</p>
 
-            <p>${place.legalAccess}</p>
+                    <p>Zugang: ${place.legalAccess}</p>
 
-        </div>
-        `;
+                </div>
+            `;
 
-    });
+        });
 
 }
 
-function renderCategories(){
+function renderCategories() {
 
     const container = document.getElementById("categories");
 
-    const categories = [...new Set(places.map(p=>p.category))];
+    const categories = [...new Set(places.map(place => place.category))];
 
     container.innerHTML = "";
 
-    categories.forEach(cat=>{
+    categories.forEach(category => {
 
-        const amount = places.filter(p=>p.category===cat).length;
+        const amount = places.filter(place => place.category === category).length;
 
         container.innerHTML += `
             <div class="card">
-                <h3>${cat}</h3>
+
+                <h3>${category}</h3>
+
                 <p>${amount} Orte</p>
+
             </div>
         `;
 
@@ -115,18 +112,17 @@ function renderCategories(){
 
 }
 
-function renderStats(){
+function renderStats() {
 
     const stats = document.getElementById("stats");
 
-    const legal = places.filter(p=>p.legalAccess==="Ja").length;
+    const legal = places.filter(place => place.legalAccess === "Ja").length;
 
-    const partial = places.filter(p=>p.legalAccess==="Teilweise").length;
+    const partial = places.filter(place => place.legalAccess === "Teilweise").length;
 
-    const illegal = places.filter(p=>p.legalAccess==="Nein").length;
+    const illegal = places.filter(place => place.legalAccess === "Nein").length;
 
     stats.innerHTML = `
-
         <div class="card">
 
             <h3>${places.length}</h3>
@@ -158,23 +154,27 @@ function renderStats(){
             <p>Nicht zugänglich</p>
 
         </div>
-
     `;
 
 }
 
 fetch("data/places.json")
-.then(r=>r.json())
-.then(data=>{
+    .then(response => response.json())
+    .then(data => {
 
-    places = data;
+        places = data;
 
-    places.forEach(createMarker);
+        places.forEach(createMarker);
 
-    renderTopPlaces();
+        renderTopPlaces();
 
-    renderCategories();
+        renderCategories();
 
-    renderStats();
+        renderStats();
 
-});
+    })
+    .catch(error => {
+
+        console.error("Fehler beim Laden der Orte:", error);
+
+    });
